@@ -18,7 +18,7 @@
                 $donnees['ID_PROJET'],
 				$donnees['NOM_PROJET'],
 				$donnees['DATE'],
-				$donnees['IMG']
+				$host."images/".$donnees['IMG']
 			);
 			
 			// Pour chaque projet, recherche de ses compétences associés
