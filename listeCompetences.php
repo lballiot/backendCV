@@ -1,13 +1,7 @@
 <?php
 
+	require_once 'cnx.php';
 	require_once 'classes/class.Competence.php';
-
-	// Objet PDO
-	$pdo = new PDO(
-		'mysql:host=localhost;dbname=db_bloc2-projets;charset=utf8',
-		'root', 
-		'root'
-	); 
 
 	// Ordre sql
     $sql = "SELECT * 
