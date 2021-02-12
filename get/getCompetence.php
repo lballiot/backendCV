@@ -25,7 +25,8 @@
 			if ($data = $request->fetch()){
 				$competence = new Competence(
 					$data['ID_COMPETENCE'],
-					$data['NOM_COMPETENCE']
+					$data['NOM_COMPETENCE'],
+					$data['ICON_COMPETENCE']
 				);
 
 			}

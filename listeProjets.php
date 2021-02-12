@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
 
 	require_once 'cnx.php';
 	require_once 'classes/class.Projet.php';
@@ -37,7 +38,8 @@
                     
                     $competence = new Competence(
 						$donnees2['ID_COMPETENCE'],
-						$donnees2['NOM_COMPETENCE'],                        
+						$donnees2['NOM_COMPETENCE'],  
+						$donnees2['ICON_COMPETENCE'],                       
 					);
 					$listeCompetences[] = $competence;
                 }
@@ -64,15 +66,6 @@
 			}
 			$projet->setLeTypeDuProjet($type);
 
-			// $notions = new Notions(
-			// 	$donnees['ID_NOTION'],
-			// 	$donnees['NOM_NOTION']
-			// );
-			// //Charger les compétences sur le projet
-			// $projet->setLesNotionsTraitees($notions);
-
-			// Ajouter le projet à la liste
-			
 			// Pour chaque projet, recherche de ses notions associés
             $sql = "SELECT *  
                 FROM traite, notion 

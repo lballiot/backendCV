@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
 
 	require_once 'cnx.php';
 	require_once 'classes/class.Competence.php';
@@ -17,6 +18,7 @@
             $competence = new Competence(
                 $donnees['ID_COMPETENCE'],
             	$donnees['NOM_COMPETENCE'],                   
+            	$donnees['ICON_COMPETENCE']
             );
 			
 			// Pour chaque competences, recherche de ses projets associés

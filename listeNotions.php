@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
 
 	require_once 'cnx.php';
 	require_once 'classes/class.Notion.php';
