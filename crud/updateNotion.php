@@ -3,12 +3,12 @@
 
     require_once '../cnx.php';    
 
-	if (isset($_POST['nom_notion'])){
+	if (isset($_POST['id'])){
 		$sql = 	"UPDATE notion SET NOM_NOTION = ?
 				WHERE ID_NOTION = ?";
 		$request = $pdo->prepare($sql);
 		$request->bindParam(1, $_POST['nom_notion']);
-		$request->bindParam(2, $_POST['id_notion']);
+		$request->bindParam(2, $_POST['id']);
 
 		echo $request->execute();
 	}

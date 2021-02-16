@@ -14,7 +14,9 @@
 
 	if (isset($_POST['id'])){
 		//Recherchez le projet par son id 
-		$sql = "SELECT * FROM projet WHERE ID_PROJET = ?";
+		$sql = "SELECT * FROM projet, type_site
+			WHERE projet.ID_TYPE = type_site.ID_TYPE
+			AND ID_PROJET = ?";
 		//Préparation de la recette 
 		$request = $pdo->prepare($sql);
 		//On remplace le paramètre ? par la valeur
@@ -29,6 +31,17 @@
 					$data['DATE'],
 					$host."images/".$data['IMG'],
 				);
+				$type = new Type(
+					$data['ID_TYPE'],
+					$data['NOM_TYPE']
+				);
+				$projet->setLeTypeDuProjet($type);
+
+				// 				$lieu = new Lieu(
+				// 	$data['ID_LIEU'],
+				// 	$data['NOM_LIEU']
+				// );
+				// $villageois->setLeLieuHabitat($lieu);
 
 			}
 		}

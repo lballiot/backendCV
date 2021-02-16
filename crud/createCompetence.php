@@ -1,7 +1,7 @@
 <?php
     header("Access-Control-Allow-Origin: *");
 
-    require_once '../cnx.php';    
+    require_once '../cnx.php';
 
 	if (isset($_POST['nom_competence'])){
 		$sql = "INSERT INTO competence(NOM_COMPETENCE, ICON_COMPETENCE) VALUES(?, ?)";
