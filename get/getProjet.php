@@ -37,12 +37,44 @@
 				);
 				$projet->setLeTypeDuProjet($type);
 
-				// 				$lieu = new Lieu(
-				// 	$data['ID_LIEU'],
-				// 	$data['NOM_LIEU']
-				// );
-				// $villageois->setLeLieuHabitat($lieu);
+				// Get notion
+				$sql2 = "SELECT * FROM traite, notion, projet
+						WHERE projet.ID_PROJET = ?
+						AND traite.ID_PROJET = projet.ID_PROJET
+						AND notion.ID_NOTION = traite.ID_NOTION";
+				$request2 = $pdo->prepare($sql2);
+				$request2->bindValue('1', $_POST['id']);
+				$listNotion = array();
+				if ($request2->execute()){
+					while ($data2 = $request2->fetch()) {
+						$notion = new Notion(
+							$data2['ID_NOTION'],
+							$data2['NOM_NOTION']
+						);
+						$listNotion[] = $notion;
+					}
+					$projet->setLesNotionsTraitees($listNotion);
+				}
 
+				// Get skill
+				$sql3 = "SELECT * FROM utilise, competence, projet
+						WHERE projet.ID_PROJET = ?
+						AND utilise.ID_PROJET = projet.ID_PROJET
+						AND competence.ID_COMPETENCE = utilise.ID_COMPETENCE";
+				$request3 = $pdo->prepare($sql3);
+				$request3->bindValue('1', $_POST['id']);
+				$listSkill = array();
+				if ($request3->execute()){
+					while ($data3 = $request3->fetch()) {
+						$competence = new Competence(
+							$data3['ID_COMPETENCE'],
+							$data3['NOM_COMPETENCE'],
+							$data3['ICON_COMPETENCE']
+						);
+						$listSkill[] = $competence;
+					}
+					$projet->setLesCompetencesUtilises($listSkill);
+				}
 			}
 		}
 		echo json_encode($projet);
